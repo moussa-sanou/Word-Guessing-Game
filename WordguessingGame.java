@@ -26,13 +26,40 @@ public class WordguessingGame {
         System.out.println("The word is: " + wordToGuess);
         Scanner scanner = new Scanner(System.in);
 
+
         while (attempts > 0)
         {
             System.out.println("You have " + attempts + " attempts left...");
             System.out.println("Guess a letter: ");
 
-            attempts--;
+            char guess = scanner.nextLine().toLowerCase().charAt(0);
+
+            if (processGuess(guess))
+            {
+                System.out.println("Your guess is correct");
+            } else
+            {
+                System.out.println("Incorrect guess!");
+                attempts--;
+            }
+
+
         }
+    }
+
+    // Create a method that will check if a character is present in our list
+    private boolean processGuess(char letter)
+    {
+        boolean letterFound = false;
+        for (int i = 0; i < wordToGuess.length(); i++)
+        {
+            if (wordToGuess.charAt(i) == letter)
+            {
+                guessedLetters[i] = letter;
+                letterFound = true;
+            }
+        }
+        return letterFound;
     }
 
 }
