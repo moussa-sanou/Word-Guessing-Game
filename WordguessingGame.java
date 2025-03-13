@@ -25,9 +25,10 @@ public class WordguessingGame {
     {
         System.out.println("The word is: " + wordToGuess);
         Scanner scanner = new Scanner(System.in);
+        boolean gameIsOver = false;
 
 
-        while (attempts > 0)
+        while (attempts > 0 && !gameIsOver)
         {
             System.out.println("You have " + attempts + " attempts left...");
             System.out.println("Guess a letter: ");
@@ -37,6 +38,11 @@ public class WordguessingGame {
             if (processGuess(guess))
             {
                 System.out.println("Your guess is correct");
+                if (new String(guessedLetters).equals(wordToGuess))
+                {
+                    System.out.println("Correct guess you win");
+                    gameIsOver = true;
+                }
             } else
             {
                 System.out.println("Incorrect guess!");
